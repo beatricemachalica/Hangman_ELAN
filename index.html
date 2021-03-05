@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Hangman</title>
+  </head>
+
+  <body>
+    <h1>Hangman</h1>
+    <!-- game container -->
+    <div class="">
+      <div class="gameContainer flex">
+        <div>
+          <p>Guess the hidden word bellow (I.T. field)</p>
+          <p id="underscoreDiv"></p>
+
+          <!-- scores -->
+          <p>
+            Wrong guesses : <span id="mistakes">0</span>/<span
+              id="maxWrong"
+            ></span>
+          </p>
+          <div class="scores">
+            Deaths : <span>0</span> Victories : <span>0</span>
+          </div>
+        </div>
+        <!-- hangman -->
+        <svg width="429" height="600" xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <title>Layer 1</title>
+            <line
+              fill="none"
+              stroke="#ffffff"
+              opacity="undefined"
+              x1="28"
+              y1="575.00018"
+              x2="402.99999"
+              y2="574.00018"
+              id="svg_1"
+              stroke-linejoin="undefined"
+              stroke-linecap="undefined"
+              stroke-width="11"
+            />
+            <line
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="11"
+              stroke-dasharray="null"
+              fill-opacity="null"
+              opacity="undefined"
+              x1="65"
+              y1="30"
+              x2="62"
+              y2="577"
+              id="svg_2"
+              stroke-linejoin="undefined"
+              stroke-linecap="undefined"
+            />
+            <line
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="11"
+              stroke-dasharray="null"
+              fill-opacity="null"
+              opacity="undefined"
+              x1="62"
+              y1="134"
+              x2="148"
+              y2="31"
+              id="svg_4"
+              stroke-linejoin="undefined"
+              stroke-linecap="undefined"
+            />
+            <line
+              fill="none"
+              stroke="#ffffff"
+              opacity="undefined"
+              x1="27"
+              y1="29.00018"
+              x2="282.99999"
+              y2="28.00018"
+              id="svg_6"
+              stroke-linejoin="undefined"
+              stroke-linecap="undefined"
+              stroke-width="11"
+            />
+            <line
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="11"
+              stroke-dasharray="null"
+              fill-opacity="null"
+              opacity="undefined"
+              x1="235"
+              y1="32"
+              x2="234"
+              y2="118"
+              id="svg_7"
+              stroke-linejoin="undefined"
+              stroke-linecap="undefined"
+            />
+            <ellipse
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="11"
+              stroke-dasharray="null"
+              fill-opacity="null"
+              opacity="undefined"
+              cx="233.5"
+              cy="160"
+              id="svg_8"
+              rx="43.5"
+              ry="43"
+            />
+            <line
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="11"
+              stroke-dasharray="null"
+              fill-opacity="null"
+              opacity="undefined"
+              x1="233"
+              y1="336"
+              x2="234"
+              y2="205"
+              id="svg_9"
+              stroke-linejoin="undefined"
+              stroke-linecap="undefined"
+            />
+            <line
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="11"
+              stroke-dasharray="null"
+              fill-opacity="null"
+              opacity="undefined"
+              x1="234.00007"
+              y1="272"
+              x2="286.00007"
+              y2="219.00001"
+              id="svg_10"
+              stroke-linejoin="undefined"
+              stroke-linecap="undefined"
+            />
+            <line
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="11"
+              stroke-dasharray="null"
+              fill-opacity="null"
+              opacity="undefined"
+              x1="233.00006"
+              y1="271"
+              x2="182.00006"
+              y2="223"
+              id="svg_11"
+              stroke-linejoin="undefined"
+              stroke-linecap="undefined"
+            />
+            <line
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="11"
+              stroke-dasharray="null"
+              fill-opacity="null"
+              opacity="undefined"
+              x1="287.00006"
+              y1="384.00001"
+              x2="233.00006"
+              y2="330.00001"
+              id="svg_12"
+              stroke-linejoin="undefined"
+              stroke-linecap="undefined"
+            />
+            <line
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="11"
+              stroke-dasharray="null"
+              fill-opacity="null"
+              opacity="undefined"
+              x1="176.00007"
+              y1="383"
+              x2="232.00007"
+              y2="330"
+              id="svg_13"
+              stroke-linejoin="undefined"
+              stroke-linecap="undefined"
+            />
+          </g>
+        </svg>
+      </div>
+      <!-- letters -->
+      <div id="letters"></div>
+      <button id="reset" onclick="reset()" class="resetButton">Reset</button>
+    </div>
+    <script src="./js/app.js"></script>
+  </body>
+</html>

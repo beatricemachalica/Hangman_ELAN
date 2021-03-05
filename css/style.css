@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+  font-family: "Akaya Telivigala", cursive;
+}
+body {
+  margin: 0;
+  background-color: rgb(88, 213, 251);
+  color: white;
+  text-align: center;
+}
+.flex {
+  display: flex;
+}
+.gameContainer {
+  width: 85%;
+  margin: auto;
+  font-size: 2rem;
+  justify-content: space-around;
+}
+h1 {
+  font-size: 2.8rem;
+  margin: 25px;
+}
+#underscoreDiv {
+  margin: 100px;
+}
+#letters {
+  width: 55%;
+  margin: auto;
+}
+#reset {
+  margin-top: 20px;
+}
+button {
+  box-shadow: 0px 1px 0px 0px #f0f7fa;
+  background: linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+  background-color: #33bdef;
+  border-radius: 6px;
+  border: 1px solid #057fd0;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px -1px 0px #5b6178;
+  margin: 5px 10px 5px 0;
+}
+button:hover {
+  background: linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+  background-color: #019ad2;
+}
+button:active {
+  position: relative;
+  top: 1px;
+}
+/* hangman */
+#svg_7,
+#svg_8,
+#svg_9,
+#svg_10,
+#svg_11,
+#svg_12,
+#svg_13 {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
