@@ -3,7 +3,7 @@ var words_liste = [
   "python",
   "javascript",
   "software",
-  "games",
+  "CSS",
   "sql",
   "php",
   "technology",
@@ -114,7 +114,9 @@ for (let letterKey of lettersKeys) {
     }
     if (mistakes === 7) {
       console.log("Game over !");
-      document.querySelector(".msg").innerHTML = "Game over ...";
+      document.querySelector(".msg").innerHTML =
+        "Game over ... The right answer was : " + answer.toLowerCase();
+      document.querySelector("#letters").style.display = "none";
     }
   });
 }
