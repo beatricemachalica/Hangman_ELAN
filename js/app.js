@@ -85,13 +85,17 @@ lettersListe();
 // join() crée et renvoie une nouvelle chaîne de caractères en concaténant tous les éléments d'un tableau (ou d'un objet semblable à un tableau).
 // La concaténation utilise la virgule ou une autre chaîne, fournie en argument, comme séparateur.
 
+// On sélectionne toutes les lettres-boutons qu'on stocke dans lettersKeys
 const lettersKeys = document.querySelectorAll("#letters button");
 
 for (let letterKey of lettersKeys) {
+  // quand on clique sur un bouton-lettre
   letterKey.addEventListener("click", function () {
     let found = false;
     this.style.display = "none";
+    // on parcours le mot answer à l'aide de for et i
     for (let i = 0; i < answer.length; i++) {
+      // on compare ce qu'on clique avec toutes les lettres de answer grâce à for et i
       if (this.innerHTML === answer[i]) {
         found = true;
         status[i] = answer[i];
@@ -102,6 +106,7 @@ for (let letterKey of lettersKeys) {
     if (found === false) {
       mistakes = mistakes + 1;
       document.querySelector("#mistakes").innerHTML = mistakes;
+      // ajouter une fonction pour le pendu ici
     }
     if (mistakes === 7) {
       console.log("Game over !");
@@ -109,12 +114,14 @@ for (let letterKey of lettersKeys) {
   });
 }
 
+// fonction pour reset la partie
 function reset() {
-  document.querySelector("#underscoreDiv").innerHTML = "";
   mistakes = 0;
   pickWord();
   status = answer.split("").map((letter) => "_");
+  document.querySelector("#underscoreDiv").innerHTML = "";
   underscores();
   lettersListe();
-  console.log("reset est cliqué !");
+  console.log(answer);
+  console.log(lettersKeys);
 }
