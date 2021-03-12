@@ -1,10 +1,11 @@
+// liste de nos mots
 var words_liste = [
-  "teacher",
   "python",
   "javascript",
   "software",
   "games",
   "sql",
+  "php",
   "technology",
   "computer",
   "responsive",
@@ -23,6 +24,17 @@ function pickWord() {
     Math.floor(Math.random() * words_liste.length)
   ].toUpperCase();
 }
+
+// toUpperCase() convertie en majuscules.
+
+// Math.floor(x) renvoie le plus grand entier qui est inférieur ou égal à un nombre x.
+
+// Math.random() renvoie un nombre flottant pseudo-aléatoire
+// compris dans l'intervalle [0, 1[ (ce qui signifie que 0 est compris dans l'intervalle mais que 1 en est exclu)
+// selon une distribution approximativement uniforme sur cet intervalle.
+// Ce nombre peut ensuite être multiplié afin de couvrir un autre intervalle.
+
+// On execute la fonction :
 pickWord();
 
 let status = answer.split("").map((letter) => "_");
@@ -48,13 +60,25 @@ function lettersListe() {
     .join("");
   document.getElementById("letters").innerHTML = buttonsHTML;
 }
+// L'objet Map représente un dictionnaire, autrement dit une carte de clés/valeurs.
+// N'importe quelle valeur valable en JavaScript
+// (que ce soit les objets ou les valeurs de types primitifs) peut être utilisée comme clé ou comme valeur.
+// L'ordre d'insertion des clés est mémorisé dans l'objet et les boucles sur les Map parcourent les clés dans cet ordre.
+
+// exemple de son utilisation :
+// const array1 = [1, 4, 9, 16];
+// pass a function to map
+// const map1 = array1.map(x => x * 2);
+// console.log(map1);
+// expected output: Array [2, 8, 18, 32]
+
 lettersListe();
 
 const lettersKeys = document.querySelectorAll("#letters button");
-let found = false;
 
 for (let letterKey of lettersKeys) {
   letterKey.addEventListener("click", function () {
+    let found = false;
     this.style.display = "none";
     for (let i = 0; i < answer.length; i++) {
       if (this.innerHTML === answer[i]) {
@@ -63,13 +87,13 @@ for (let letterKey of lettersKeys) {
         document.querySelector("#underscoreDiv").children[i].innerHTML =
           answer[i];
       }
-      if (found === false) {
-        mistakes = mistakes + 1;
-        document.querySelector("#mistakes").innerHTML = mistakes;
-      }
-      if (mistakes === 7) {
-        console.log("Game over !");
-      }
+    }
+    if (found === false) {
+      mistakes = mistakes + 1;
+      document.querySelector("#mistakes").innerHTML = mistakes;
+    }
+    if (mistakes === 7) {
+      console.log("Game over !");
     }
   });
 }
