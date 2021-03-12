@@ -88,6 +88,10 @@ lettersListe();
 // On sélectionne toutes les lettres-boutons qu'on stocke dans lettersKeys
 const lettersKeys = document.querySelectorAll("#letters button");
 
+// On récupère tous les parties du pendu (svg)
+const hangmanElements = document.getElementsByClassName("hangman");
+console.log(hangmanElements);
+
 for (let letterKey of lettersKeys) {
   // quand on clique sur un bouton-lettre
   letterKey.addEventListener("click", function () {
