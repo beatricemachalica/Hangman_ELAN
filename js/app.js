@@ -88,9 +88,9 @@ lettersListe();
 // On sélectionne toutes les lettres-boutons qu'on stocke dans lettersKeys
 const lettersKeys = document.querySelectorAll("#letters button");
 
-// On récupère tous les parties du pendu (svg)
-const hangmanElements = document.getElementsByClassName("hangman");
-console.log(hangmanElements);
+// On récupère toutes les parties du pendu (svg)
+// const hangmanElements = document.getElementsByClassName("hangman");
+// console.log(hangmanElements);
 
 for (let letterKey of lettersKeys) {
   // quand on clique sur un bouton-lettre
@@ -110,22 +110,28 @@ for (let letterKey of lettersKeys) {
     if (found === false) {
       mistakes = mistakes + 1;
       document.querySelector("#mistakes").innerHTML = mistakes;
-      // ajouter une fonction pour le pendu ici
+      document.querySelector(".hangman_" + mistakes).style.opacity = 1;
     }
     if (mistakes === 7) {
       console.log("Game over !");
+      document.querySelector(".msg").innerHTML = "Game over ...";
     }
   });
 }
 
-// fonction pour reset la partie
+// fonction pour reset la partie :
+// function reset() {
+//   mistakes = 0;
+//   pickWord();
+//   status = answer.split("").map((letter) => "_");
+//   document.querySelector("#underscoreDiv").innerHTML = "";
+//   underscores();
+//   lettersListe();
+//   console.log(answer);
+//   console.log(lettersKeys);
+// }
+
+// fonction pour reset la partie avec un reload :
 function reset() {
-  mistakes = 0;
-  pickWord();
-  status = answer.split("").map((letter) => "_");
-  document.querySelector("#underscoreDiv").innerHTML = "";
-  underscores();
-  lettersListe();
-  console.log(answer);
-  console.log(lettersKeys);
+  document.location.reload();
 }
