@@ -44,83 +44,21 @@ for (let button of topicButtons) {
   });
 }
 
-// ancienne méthode sans DB :
-// liste de nos mots
-// var words_liste = [
-//   "python",
-//   "javascript",
-//   "software",
-//   "CSS",
-//   "sql",
-//   "php",
-//   "technology",
-//   "computer",
-//   "responsive",
-//   "design",
-// ];
-
-// ancienne méthode sans DB :
-// solution stackoverflow
-// var item = items[Math.floor(Math.random() * items.length)];
-// function pickWord() {
-//   answer = words_liste[
-//     Math.floor(Math.random() * words_liste.length)
-//   ].toUpperCase();
-// }
-// On execute la fonction :
-// pickWord();
-
-// toUpperCase() convertie en majuscules.
-// Math.floor(x) renvoie le plus grand entier qui est inférieur ou égal à un nombre x.
-
-// Math.random() renvoie un nombre flottant pseudo-aléatoire
-// compris dans l'intervalle [0, 1[ (ce qui signifie que 0 est compris dans l'intervalle mais que 1 en est exclu)
-// selon une distribution approximativement uniforme sur cet intervalle.
-// Ce nombre peut ensuite être multiplié afin de couvrir un autre intervalle.
-
-// *** comment ça marche ? ***
-
-// split() permet de diviser une chaîne de caractères à partir d'un séparateur pour fournir un tableau de sous-chaînes.
-
-// .map permet de recréer un tableau à partir d'un tableau :
-
-// L'objet Map représente un dictionnaire, autrement dit une carte de clés/valeurs.
-// N'importe quelle valeur valable en JavaScript (que ce soit les objets ou les valeurs de types primitifs)
-// peut être utilisée comme clé ou comme valeur.
-// L'ordre d'insertion des clés est mémorisé dans l'objet et les boucles sur les Map parcourent les clés dans cet ordre.
-
-// exemple de son utilisation :
-// const array1 = [1, 4, 9, 16];
-// pass a function to map
-// const map1 = array1.map(x => x * 2);
-// console.log(map1);
-// expected output: Array [2, 8, 18, 32]
-
-// keyboard generator :
-
-// autre solution pour une fonction compare qui est directement dans les buttons
-// : map((letter) => `<button id='` + letter + `' onClick="compare('` + letter + `')">` + letter +`</button>`)
-
 function lettersListe() {
   let buttonsHTML = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     .split("")
-    .map((letter) => `<button id='` + letter + `'>` + letter + `</button>`)
+    .map((letter) => `<button id='` + letter + `'>` + letter + `</button>`) // (voir explication de .map plus bas)
     .join("");
+  // join() crée et renvoie une nouvelle chaîne de caractères en concaténant
+  // tous les éléments d'un tableau (ou d'un objet semblable à un tableau).
+  // La concaténation utilise la virgule ou une autre chaîne, fournie en argument, comme séparateur.
   document.getElementById("letters").innerHTML = buttonsHTML;
 }
 // On execute la fonction :
 lettersListe();
 
-// (voir explication de .map plus haut)
-// join() crée et renvoie une nouvelle chaîne de caractères en concaténant tous les éléments d'un tableau (ou d'un objet semblable à un tableau).
-// La concaténation utilise la virgule ou une autre chaîne, fournie en argument, comme séparateur.
-
 // On sélectionne toutes les lettres-boutons qu'on stocke dans lettersKeys
 const lettersKeys = document.querySelectorAll("#letters button");
-
-// On récupère toutes les parties du pendu (svg)
-// const hangmanElements = document.getElementsByClassName("hangman");
-// console.log(hangmanElements);
 
 for (let letterKey of lettersKeys) {
   // quand on clique sur un bouton-lettre
@@ -151,6 +89,13 @@ for (let letterKey of lettersKeys) {
   });
 }
 
+// fonction pour reset la partie avec un reload de la page :
+function reset() {
+  document.location.reload();
+}
+
+// work in progress !
+
 // fonction pour reset la partie :
 // function reset() {
 //   mistakes = 0;
@@ -162,7 +107,56 @@ for (let letterKey of lettersKeys) {
 //   console.log(lettersKeys);
 // }
 
-// fonction pour reset la partie avec un reload :
-function reset() {
-  document.location.reload();
-}
+// ************ ancienne méthode sans DB *************************
+// on devait utiliser une liste de mots "words_liste"
+// puis utiliser une fonction qui prend un mot au hasard "pickWord()"
+
+// liste de nos mots
+// var words_liste = [
+//   "python",
+//   "javascript",
+//   "software",
+//   "CSS",
+//   "sql",
+//   "php",
+//   "technology",
+//   "computer",
+//   "responsive",
+//   "design",
+// ];
+
+// var item = items[Math.floor(Math.random() * items.length)];
+// function pickWord() {
+//   answer = words_liste[
+//     Math.floor(Math.random() * words_liste.length)
+//   ].toUpperCase();
+// }
+// On execute la fonction :
+// pickWord();
+
+// ****************************************************************
+
+// ****** comment ça marche ? ******
+
+// toUpperCase() convertie en majuscules.
+// Math.floor(x) renvoie le plus grand entier qui est inférieur ou égal à un nombre x.
+
+// Math.random() renvoie un nombre flottant pseudo-aléatoire
+// compris dans l'intervalle [0, 1[ (ce qui signifie que 0 est compris dans l'intervalle mais que 1 en est exclu)
+// selon une distribution approximativement uniforme sur cet intervalle.
+// Ce nombre peut ensuite être multiplié afin de couvrir un autre intervalle.
+
+// split() permet de diviser une chaîne de caractères à partir d'un séparateur pour fournir un tableau de sous-chaînes.
+
+// .map permet de recréer un tableau à partir d'un tableau :
+// L'objet Map représente un dictionnaire, autrement dit une carte de clés/valeurs.
+// N'importe quelle valeur valable en JavaScript (que ce soit les objets ou les valeurs de types primitifs)
+// peut être utilisée comme clé ou comme valeur.
+// L'ordre d'insertion des clés est mémorisé dans l'objet et les boucles sur les Map parcourent les clés dans cet ordre.
+
+// exemple de son utilisation :
+// const array1 = [1, 4, 9, 16];
+// pass a function to map
+// const map1 = array1.map(x => x * 2);
+// console.log(map1);
+// expected output: Array [2, 8, 18, 32]
