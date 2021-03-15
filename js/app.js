@@ -1,34 +1,76 @@
-// liste de nos mots
-var words_liste = [
-  "python",
-  "javascript",
-  "software",
-  "CSS",
-  "sql",
-  "php",
-  "technology",
-  "computer",
-  "responsive",
-  "design",
-];
-
 let answer = "";
 let maxWrong = 7;
 document.getElementById("maxWrong").innerHTML = maxWrong;
 let mistakes = 0;
 
+// On récupère tous les boutons (eh oui y en a plusieurs avec la class topic)
+// On fait une bouuuuuuuuuuuuuuuuucle
+// On fait l'eventListener <3
+
+const topicButtons = document.querySelectorAll(".topic");
+// console.log(topicButtons);
+for (let button of topicButtons) {
+  // quand on clique sur un bouton
+  button.addEventListener("click", function () {
+    let theme = this.innerHTML;
+    console.log(theme);
+
+    // l'appel AJAX, il doit se faire dans l'eventListener au dessus, sinon ça va pas marcher
+    fetch("http://localhost/Hangman_game_ajax/server/word.php", {
+      method: "POST",
+      body: JSON.stringify({
+        theme,
+      }),
+    })
+      .then((res) => res.json)
+      // on récupèrera un mot qui sera le mot à trouver "answer"
+      .then((data) => {
+        answer = data;
+
+        // état de la partie :
+        let status = answer.split("").map((letter) => "_");
+
+        // generate underscores :
+        function underscores() {
+          for (let i = 0; i < status.length; i++) {
+            document.getElementById("underscoreDiv").innerHTML +=
+              `<span class="letterSpan">${status[i]}</span>` + ` `;
+          }
+        }
+        // On execute la fonction :
+        underscores();
+        console.log(answer);
+      });
+  });
+}
+
+// ancienne méthode sans DB :
+// liste de nos mots
+// var words_liste = [
+//   "python",
+//   "javascript",
+//   "software",
+//   "CSS",
+//   "sql",
+//   "php",
+//   "technology",
+//   "computer",
+//   "responsive",
+//   "design",
+// ];
+
+// ancienne méthode sans DB :
 // solution stackoverflow
 // var item = items[Math.floor(Math.random() * items.length)];
-function pickWord() {
-  answer = words_liste[
-    Math.floor(Math.random() * words_liste.length)
-  ].toUpperCase();
-}
+// function pickWord() {
+//   answer = words_liste[
+//     Math.floor(Math.random() * words_liste.length)
+//   ].toUpperCase();
+// }
 // On execute la fonction :
-pickWord();
+// pickWord();
 
 // toUpperCase() convertie en majuscules.
-
 // Math.floor(x) renvoie le plus grand entier qui est inférieur ou égal à un nombre x.
 
 // Math.random() renvoie un nombre flottant pseudo-aléatoire
@@ -36,8 +78,7 @@ pickWord();
 // selon une distribution approximativement uniforme sur cet intervalle.
 // Ce nombre peut ensuite être multiplié afin de couvrir un autre intervalle.
 
-// état de la partie :
-let status = answer.split("").map((letter) => "_");
+// *** comment ça marche ? ***
 
 // split() permet de diviser une chaîne de caractères à partir d'un séparateur pour fournir un tableau de sous-chaînes.
 
@@ -54,17 +95,6 @@ let status = answer.split("").map((letter) => "_");
 // const map1 = array1.map(x => x * 2);
 // console.log(map1);
 // expected output: Array [2, 8, 18, 32]
-
-// generate underscores :
-function underscores() {
-  for (let i = 0; i < status.length; i++) {
-    document.getElementById("underscoreDiv").innerHTML +=
-      `<span class="letterSpan">${status[i]}</span>` + ` `;
-  }
-}
-// On execute la fonction :
-underscores();
-console.log(answer);
 
 // keyboard generator :
 
@@ -124,7 +154,6 @@ for (let letterKey of lettersKeys) {
 // fonction pour reset la partie :
 // function reset() {
 //   mistakes = 0;
-//   pickWord();
 //   status = answer.split("").map((letter) => "_");
 //   document.querySelector("#underscoreDiv").innerHTML = "";
 //   underscores();
