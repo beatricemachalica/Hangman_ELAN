@@ -27,8 +27,13 @@ for (let button of topicButtons) {
       .then((res) => res.json())
       // on récupèrera un mot qui sera le mot à trouver "answer"
       .then((data) => {
-        answer = data;
+        answer = data[
+          Math.floor(Math.random() * data.length)
+        ].nom.toUpperCase();
+        // answer = data.toUpperCase();
         console.log(answer);
+
+        // on est en asynchrone, donc il faut charger le reste du code
 
         // état de la partie :
         let status = answer.split("").map((letter) => "_");
@@ -91,13 +96,18 @@ function lettersListe() {
 // On execute la fonction :
 lettersListe();
 
+// console.log(status);
+// console.log(answer);
+// if (status == answer) {
+//   document.querySelector(".msg").innerHTML = "victoire !";
+// }
+
 // fonction pour reset la partie avec un reload de la page :
 function reset() {
   document.location.reload();
 }
 
 // work in progress !
-
 // fonction pour reset la partie :
 // function reset() {
 //   mistakes = 0;
@@ -127,7 +137,10 @@ function reset() {
 //   "design",
 // ];
 
+// solution stackoverflow :
+// var items = Array(523, 3452, 334, 31, ..., 5346);
 // var item = items[Math.floor(Math.random() * items.length)];
+
 // function pickWord() {
 //   answer = words_liste[
 //     Math.floor(Math.random() * words_liste.length)

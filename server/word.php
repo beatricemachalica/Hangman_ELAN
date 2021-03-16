@@ -28,11 +28,28 @@ $req->bindParam('theme',$theme);
 $req->execute();
 
 // fetch() récupère une ligne depuis un jeu de résultats associé à l'objet PDOStatement.
-$result = $req->fetch(PDO::FETCH_ASSOC);
+// pour un seul mot :
+// $result = $req->fetch(PDO::FETCH_ASSOC);
+// $data = $result['nom'];
+// echo json_encode($data);
 
-$data = $result['nom'];
-echo json_encode($data);
+// pour un tableau associatif :
+$result = $req->fetchAll(PDO::FETCH_ASSOC);
+echo json_encode($result);
 
 // catch(Exception $e){
 //   return $e->getMessage();
 // }
+
+// ce qu'on va avoir :
+// [
+//   ['nom' => 'Evoli'],
+//   ['nom'] => 'Pikachu'],
+// ]
+
+// data = [
+//   {nom: 'Evoli'},
+//   {nom: 'pikachu'}
+// ]
+
+// data[0].nom
