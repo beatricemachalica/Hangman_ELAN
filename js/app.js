@@ -77,6 +77,9 @@ for (let button of topicButtons) {
                 "Game over ... The right answer was : " + answer.toLowerCase();
               document.querySelector("#letters").style.display = "none";
             }
+            if (status.join("") == answer) {
+              document.querySelector(".msg").innerHTML = "Victory !";
+            }
           });
         }
       });
@@ -95,12 +98,6 @@ function lettersListe() {
 }
 // On execute la fonction :
 lettersListe();
-
-// console.log(status);
-// console.log(answer);
-// if (status == answer) {
-//   document.querySelector(".msg").innerHTML = "victoire !";
-// }
 
 // fonction pour reset la partie avec un reload de la page :
 function reset() {
