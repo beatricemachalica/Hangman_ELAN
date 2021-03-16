@@ -2,6 +2,7 @@ let answer = "";
 let maxWrong = 7;
 document.getElementById("maxWrong").innerHTML = maxWrong;
 let mistakes = 0;
+let status = [];
 
 // On récupère tous les boutons (eh oui y en a plusieurs avec la class topic)
 // On fait une bouuuuuuuuuuuuuuuuucle
@@ -9,23 +10,25 @@ let mistakes = 0;
 
 const topicButtons = document.querySelectorAll(".topic");
 // console.log(topicButtons);
+
 for (let button of topicButtons) {
   // quand on clique sur un bouton
   button.addEventListener("click", function () {
     let theme = this.innerHTML;
-    console.log(theme);
+    // console.log(theme);
 
-    // l'appel AJAX, il doit se faire dans l'eventListener au dessus, sinon ça va pas marcher
+    // l'appel AJAX - il doit se faire dans l'eventListener au dessus, sinon ça va pas marcher
     fetch("http://localhost/Hangman_game_ajax/server/word.php", {
       method: "POST",
       body: JSON.stringify({
         theme,
       }),
     })
-      .then((res) => res.json)
+      .then((res) => res.json())
       // on récupèrera un mot qui sera le mot à trouver "answer"
       .then((data) => {
         answer = data;
+        console.log(answer);
 
         // état de la partie :
         let status = answer.split("").map((letter) => "_");
@@ -39,7 +42,38 @@ for (let button of topicButtons) {
         }
         // On execute la fonction :
         underscores();
-        console.log(answer);
+
+        // On sélectionne toutes les lettres-boutons qu'on stocke dans lettersKeys
+        const lettersKeys = document.querySelectorAll("#letters button");
+
+        for (let letterKey of lettersKeys) {
+          // quand on clique sur un bouton-lettre
+          letterKey.addEventListener("click", function () {
+            let found = false;
+            this.style.display = "none";
+            // on parcours le mot answer à l'aide de for et i
+            for (let i = 0; i < answer.length; i++) {
+              // on compare ce qu'on clique avec toutes les lettres de answer grâce à for et i
+              if (this.innerHTML === answer[i]) {
+                found = true;
+                status[i] = answer[i];
+                document.querySelector("#underscoreDiv").children[i].innerHTML =
+                  answer[i];
+              }
+            }
+            if (found === false) {
+              mistakes = mistakes + 1;
+              document.querySelector("#mistakes").innerHTML = mistakes;
+              document.querySelector(".hangman_" + mistakes).style.opacity = 1;
+            }
+            if (mistakes === 7) {
+              console.log("Game over !");
+              document.querySelector(".msg").innerHTML =
+                "Game over ... The right answer was : " + answer.toLowerCase();
+              document.querySelector("#letters").style.display = "none";
+            }
+          });
+        }
       });
   });
 }
@@ -56,38 +90,6 @@ function lettersListe() {
 }
 // On execute la fonction :
 lettersListe();
-
-// On sélectionne toutes les lettres-boutons qu'on stocke dans lettersKeys
-const lettersKeys = document.querySelectorAll("#letters button");
-
-for (let letterKey of lettersKeys) {
-  // quand on clique sur un bouton-lettre
-  letterKey.addEventListener("click", function () {
-    let found = false;
-    this.style.display = "none";
-    // on parcours le mot answer à l'aide de for et i
-    for (let i = 0; i < answer.length; i++) {
-      // on compare ce qu'on clique avec toutes les lettres de answer grâce à for et i
-      if (this.innerHTML === answer[i]) {
-        found = true;
-        status[i] = answer[i];
-        document.querySelector("#underscoreDiv").children[i].innerHTML =
-          answer[i];
-      }
-    }
-    if (found === false) {
-      mistakes = mistakes + 1;
-      document.querySelector("#mistakes").innerHTML = mistakes;
-      document.querySelector(".hangman_" + mistakes).style.opacity = 1;
-    }
-    if (mistakes === 7) {
-      console.log("Game over !");
-      document.querySelector(".msg").innerHTML =
-        "Game over ... The right answer was : " + answer.toLowerCase();
-      document.querySelector("#letters").style.display = "none";
-    }
-  });
-}
 
 // fonction pour reset la partie avec un reload de la page :
 function reset() {

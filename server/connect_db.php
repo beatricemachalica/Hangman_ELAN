@@ -15,8 +15,6 @@ catch(Exception $e){
     echo $e->getMessage();
 }
 
-
-
 // *1 :
 // Le constructeur accepte des paramètres pour spécifier :
 // la source de la base de données (connue en tant que DSN) ici mysql:host=localhost:3306 + dbname=pendu,
