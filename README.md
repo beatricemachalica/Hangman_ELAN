@@ -2,7 +2,7 @@
 
 ## Création du jeu "morpion" à l'aide de JavaScript, MySQL, PHP
 
-Nous avons relié les différentes le jeu à une bdd. Utilisation d'AJAX.
+Nous avons relié le jeu à une bdd. Utilisation d'AJAX.
 
 ### Fonctionnalités :
 
