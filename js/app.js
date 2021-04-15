@@ -5,8 +5,7 @@ let mistakes = 0;
 let status = [];
 
 // On récupère tous les boutons (eh oui y en a plusieurs avec la class topic)
-// On fait une bouuuuuuuuuuuuuuuuucle
-// On fait l'eventListener <3
+// On fait une boucle puis, on fait l'eventListener <3
 
 const topicButtons = document.querySelectorAll(".topic");
 // console.log(topicButtons);
