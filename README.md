@@ -2,13 +2,13 @@
 
 ## Création du jeu "morpion" à l'aide de JavaScript, MySQL, PHP
 
-Nous avons relié le jeu à une bdd. Utilisation d'AJAX.
+Nous avons relié le jeu à une bdd. Utilisation d'AJAX et de JS asynchrone.
 
 ### Fonctionnalités :
 
 - faire apparaitre les 3 thèmes de mots reliés à une BDD ;
 - on masque le mot qui doit être trouvé par le joueur ;
-- afficher un suivi des erreurs ;
+- affichage d'un suivi des erreurs ;
 - les lettres utilisées s'effacent après leur utilisation ;
 - une image vectorielle d'un pendu apparait en fonction des erreurs.
 - un bouton "reset" permet de réinitialiser le jeu
