@@ -1,6 +1,6 @@
-# Création d'un morpion avec ELAN :
+# Création d'un mini jeu avec ELAN :
 
-## Création du jeu "morpion" à l'aide de JavaScript, MySQL, PHP
+## Création du pendu à l'aide de JavaScript, MySQL, PHP
 
 Nous avons relié le jeu à une bdd. Utilisation d'AJAX et de JS asynchrone.
 
